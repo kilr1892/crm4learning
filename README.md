@@ -8,7 +8,7 @@
 - mysql 5.5
 
 
-- spring/springmvc 4.3.17.RELEASE
+- spring/springmvc 4.3.20.RELEASE
 - mybatis 3.4.5
 - junit 4.12
 - servlet/jsp/jstl
@@ -23,4 +23,4 @@
 # 更新
 ## 2019-8-1
 1. 搭好了ssm框架
-2. 被github警告有安全问题, 于是将`spring`版本号改为`4.3.17.RELEASE`
+2. 被github警告有安全问题, 于是将`spring`版本号改为`4.3.20.RELEASE`
