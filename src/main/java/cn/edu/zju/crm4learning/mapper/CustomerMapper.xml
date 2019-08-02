@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zju.crm4learning.mapper.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zju.crm4learning.pojo.Customer" >
+    <id column="custom_id" property="customId" jdbcType="VARCHAR" />
+    <result column="custom_name" property="customName" jdbcType="VARCHAR" />
+    <result column="custom_phone" property="customPhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    custom_id, custom_name, custom_phone
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.zju.crm4learning.pojo.CustomerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where custom_id = #{customId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from customer
+    where custom_id = #{customId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.zju.crm4learning.pojo.CustomerExample" >
+    delete from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.zju.crm4learning.pojo.Customer" >
+    insert into customer (custom_id, custom_name, custom_phone
+      )
+    values (#{customId,jdbcType=VARCHAR}, #{customName,jdbcType=VARCHAR}, #{customPhone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.zju.crm4learning.pojo.Customer" >
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customId != null" >
+        custom_id,
+      </if>
+      <if test="customName != null" >
+        custom_name,
+      </if>
+      <if test="customPhone != null" >
+        custom_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customId != null" >
+        #{customId,jdbcType=VARCHAR},
+      </if>
+      <if test="customName != null" >
+        #{customName,jdbcType=VARCHAR},
+      </if>
+      <if test="customPhone != null" >
+        #{customPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.zju.crm4learning.pojo.CustomerExample" resultType="java.lang.Integer" >
+    select count(*) from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update customer
+    <set >
+      <if test="record.customId != null" >
+        custom_id = #{record.customId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customName != null" >
+        custom_name = #{record.customName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customPhone != null" >
+        custom_phone = #{record.customPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update customer
+    set custom_id = #{record.customId,jdbcType=VARCHAR},
+      custom_name = #{record.customName,jdbcType=VARCHAR},
+      custom_phone = #{record.customPhone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zju.crm4learning.pojo.Customer" >
+    update customer
+    <set >
+      <if test="customName != null" >
+        custom_name = #{customName,jdbcType=VARCHAR},
+      </if>
+      <if test="customPhone != null" >
+        custom_phone = #{customPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where custom_id = #{customId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zju.crm4learning.pojo.Customer" >
+    update customer
+    set custom_name = #{customName,jdbcType=VARCHAR},
+      custom_phone = #{customPhone,jdbcType=VARCHAR}
+    where custom_id = #{customId,jdbcType=VARCHAR}
+  </update>
+</mapper>
