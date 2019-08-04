@@ -28,4 +28,6 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    String selectLastOrderNumber(@Param("orderDay") String orderDay);
 }

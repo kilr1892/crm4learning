@@ -26,21 +26,29 @@
 - pagehelper 3.4.2-fix 这个是传智播客修复版
 - druid 1.0.14
 - jackson 2.10.0.pr1  github 老是发邮件说有漏洞,于是改成最新的版本 
-
-
+- httpclient
+- joda-time
 
 # 更新
 
-## 2019-8-2
+## 2019-08-04
+
+- 重构了customer order表
+- 美化order.jsp页面
+- pom中增加需要的jar包
+- log4j中将sql语句输出至客户端
+- 增加了orderMapper中增加selectLastOrderNumber方法
+
+## 2019-08-02
 
 - 通过`mybatis`自动生成mapper和xml
 - 修复了`applicationContext-dao.xml` 中的扫描包路径
 - 测试了数据库的连接
 - 增加了数据库文件
-- jackson版本改为2.10.0.pr1
+- 修改jackson版本改为2.10.0.pr1
 
 
-## 2019-8-1
+## 2019-08-01
 
 1. 搭好了ssm框架
 2. 被github警告有安全问题, 于是将`spring`版本号改为`4.3.20.RELEASE`

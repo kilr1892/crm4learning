@@ -5,8 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * 首页controller.
- * <p>
+ * 每日统计Controller.
  * When I wrote this, only God and I understood what I was doing
  * Now, God only knows
  *
@@ -14,11 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @version v1.0
  */
 @Controller
-public class IndexController {
-    @RequestMapping("/")
-    private String showIndex(Model model) {
-        return "index";
+public class StatisticsController {
+
+    @RequestMapping("statistics-today")
+    public String getStatisticsToday(Model model) {
+        return "statistics-today";
     }
 
-
+    @RequestMapping("statistics-all")
+    public String getStatisticsAll(Model model) {
+        return "statistics-all";
+    }
 }
