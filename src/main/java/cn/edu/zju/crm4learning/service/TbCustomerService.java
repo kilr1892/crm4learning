@@ -1,6 +1,6 @@
 package cn.edu.zju.crm4learning.service;
 
-import cn.edu.zju.crm4learning.pojo.Customer;
+import cn.edu.zju.crm4learning.pojo.TbCustomer;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import java.util.List;
  * @author RichardLee
  * @version v1.0
  */
-public interface CustomerService {
+public interface TbCustomerService {
 
-    List<Customer> getCustomers();
+    List<TbCustomer> getCustomers();
 
     String getCustomerPhone(String customerName);
     

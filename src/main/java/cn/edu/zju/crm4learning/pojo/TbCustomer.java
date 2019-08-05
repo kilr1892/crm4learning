@@ -1,6 +1,6 @@
 package cn.edu.zju.crm4learning.pojo;
 
-public class Customer {
+public class TbCustomer {
     private String customId;
 
     private String customName;

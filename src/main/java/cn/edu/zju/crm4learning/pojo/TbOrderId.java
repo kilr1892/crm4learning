@@ -8,12 +8,12 @@ package cn.edu.zju.crm4learning.pojo;
  * @author RichardLee
  * @version v1.0
  */
-public class OrderId {
+public class TbOrderId {
     private String orderDay;
     private String orderNum;
     private String orderId;
 
-    public OrderId(String orderDay, String orderNum, String orderId) {
+    public TbOrderId(String orderDay, String orderNum, String orderId) {
         this.orderDay = orderDay;
         this.orderNum = orderNum;
         this.orderId = orderId;

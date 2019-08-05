@@ -1,9 +1,10 @@
 package cn.edu.zju.crm4learning.service.impl;
 
-import cn.edu.zju.crm4learning.mapper.OrderMapper;
-import cn.edu.zju.crm4learning.pojo.Customer;
-import cn.edu.zju.crm4learning.pojo.OrderId;
-import cn.edu.zju.crm4learning.service.OrderService;
+import cn.edu.zju.crm4learning.mapper.TbOrderMapper;
+import cn.edu.zju.crm4learning.pojo.TbCustomer;
+import cn.edu.zju.crm4learning.pojo.TbOrder;
+import cn.edu.zju.crm4learning.pojo.TbOrderId;
+import cn.edu.zju.crm4learning.service.TbOrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -17,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,9 +29,9 @@ import java.util.List;
  * @version v1.0
  */
 @Service
-public class OrderServiceImpl implements OrderService {
+public class TbOrderServiceImpl implements TbOrderService {
     @Autowired
-    private OrderMapper orderMapper;
+    private TbOrderMapper tbOrderMapper;
 
     /**
      * 感觉自己像个智障, json又转成list
@@ -39,15 +39,15 @@ public class OrderServiceImpl implements OrderService {
      * 然后在用httpclient取...
      */
     @Override
-    public List<Customer> getCustomers() {
+    public List<TbCustomer> getCustomers() {
         String url = "http://localhost:8080/customer/getCustomers";
-        HttpGet request =  new HttpGet(url);
+        HttpGet request = new HttpGet(url);
         HttpClient httpClient = new DefaultHttpClient();
         try {
             HttpResponse response = httpClient.execute(request);
             String strCustomers = EntityUtils.toString(response.getEntity(), "UTF-8");
             ObjectMapper objectMapper = new ObjectMapper();
-            List<Customer> customers = (List<Customer>)objectMapper.readValue(strCustomers, List.class);
+            List<TbCustomer> customers = (List<TbCustomer>) objectMapper.readValue(strCustomers, List.class);
             return customers;
 
         } catch (IOException e) {
@@ -57,23 +57,29 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderId getOrderId() {
+    public TbOrderId getOrderId() {
         LocalDate now = LocalDate.now();
         DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyyMMdd");
         String orderDay = fmt.print(now);
 
         // 数据库查数据
-        String lastOrderId = orderMapper.selectLastOrderNumber(orderDay + "__");
+        String lastOrderId = tbOrderMapper.selectLastOrderNumber(orderDay + "__");
         // 如果没查到
-        if (lastOrderId.length() != 0) {
+        if (lastOrderId == null) {
+            String orderNum = "01";
+            String orderId = orderDay + orderNum;
+            return new TbOrderId(orderDay, orderNum, orderId);
+        } else {
             String lastOrderNum = lastOrderId.substring(8);
             int intOrderNum = Integer.parseInt(lastOrderNum) + 1;
             String orderNum = String.format("%02d", intOrderNum);
             String orderId = orderDay + orderNum;
-            return new OrderId(orderDay, orderNum, orderId);
+            return new TbOrderId(orderDay, orderNum, orderId);
         }
-        String orderNum = "01";
-        String orderId = orderDay + orderNum;
-        return new OrderId(orderDay, orderNum, orderId);
+    }
+
+    @Override
+    public void addOrder(TbOrder tbOrder) {
+        tbOrderMapper.insert(tbOrder);
     }
 }

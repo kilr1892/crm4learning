@@ -1,18 +1,17 @@
 package cn.edu.zju.crm4learning.pojo;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PaymentExample {
+public class TbPaymentExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public PaymentExample() {
+    public TbPaymentExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -246,52 +245,62 @@ public class PaymentExample {
             return (Criteria) this;
         }
 
-        public Criteria andPaymentCuttingWageEqualTo(BigDecimal value) {
+        public Criteria andPaymentCuttingWageEqualTo(String value) {
             addCriterion("payment_cutting_wage =", value, "paymentCuttingWage");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentCuttingWageNotEqualTo(BigDecimal value) {
+        public Criteria andPaymentCuttingWageNotEqualTo(String value) {
             addCriterion("payment_cutting_wage <>", value, "paymentCuttingWage");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentCuttingWageGreaterThan(BigDecimal value) {
+        public Criteria andPaymentCuttingWageGreaterThan(String value) {
             addCriterion("payment_cutting_wage >", value, "paymentCuttingWage");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentCuttingWageGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andPaymentCuttingWageGreaterThanOrEqualTo(String value) {
             addCriterion("payment_cutting_wage >=", value, "paymentCuttingWage");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentCuttingWageLessThan(BigDecimal value) {
+        public Criteria andPaymentCuttingWageLessThan(String value) {
             addCriterion("payment_cutting_wage <", value, "paymentCuttingWage");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentCuttingWageLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andPaymentCuttingWageLessThanOrEqualTo(String value) {
             addCriterion("payment_cutting_wage <=", value, "paymentCuttingWage");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentCuttingWageIn(List<BigDecimal> values) {
+        public Criteria andPaymentCuttingWageLike(String value) {
+            addCriterion("payment_cutting_wage like", value, "paymentCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentCuttingWageNotLike(String value) {
+            addCriterion("payment_cutting_wage not like", value, "paymentCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentCuttingWageIn(List<String> values) {
             addCriterion("payment_cutting_wage in", values, "paymentCuttingWage");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentCuttingWageNotIn(List<BigDecimal> values) {
+        public Criteria andPaymentCuttingWageNotIn(List<String> values) {
             addCriterion("payment_cutting_wage not in", values, "paymentCuttingWage");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentCuttingWageBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andPaymentCuttingWageBetween(String value1, String value2) {
             addCriterion("payment_cutting_wage between", value1, value2, "paymentCuttingWage");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentCuttingWageNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andPaymentCuttingWageNotBetween(String value1, String value2) {
             addCriterion("payment_cutting_wage not between", value1, value2, "paymentCuttingWage");
             return (Criteria) this;
         }
@@ -306,52 +315,62 @@ public class PaymentExample {
             return (Criteria) this;
         }
 
-        public Criteria andPaymentTaxPointEqualTo(BigDecimal value) {
+        public Criteria andPaymentTaxPointEqualTo(String value) {
             addCriterion("payment_tax_point =", value, "paymentTaxPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentTaxPointNotEqualTo(BigDecimal value) {
+        public Criteria andPaymentTaxPointNotEqualTo(String value) {
             addCriterion("payment_tax_point <>", value, "paymentTaxPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentTaxPointGreaterThan(BigDecimal value) {
+        public Criteria andPaymentTaxPointGreaterThan(String value) {
             addCriterion("payment_tax_point >", value, "paymentTaxPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentTaxPointGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andPaymentTaxPointGreaterThanOrEqualTo(String value) {
             addCriterion("payment_tax_point >=", value, "paymentTaxPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentTaxPointLessThan(BigDecimal value) {
+        public Criteria andPaymentTaxPointLessThan(String value) {
             addCriterion("payment_tax_point <", value, "paymentTaxPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentTaxPointLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andPaymentTaxPointLessThanOrEqualTo(String value) {
             addCriterion("payment_tax_point <=", value, "paymentTaxPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentTaxPointIn(List<BigDecimal> values) {
+        public Criteria andPaymentTaxPointLike(String value) {
+            addCriterion("payment_tax_point like", value, "paymentTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentTaxPointNotLike(String value) {
+            addCriterion("payment_tax_point not like", value, "paymentTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentTaxPointIn(List<String> values) {
             addCriterion("payment_tax_point in", values, "paymentTaxPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentTaxPointNotIn(List<BigDecimal> values) {
+        public Criteria andPaymentTaxPointNotIn(List<String> values) {
             addCriterion("payment_tax_point not in", values, "paymentTaxPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentTaxPointBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andPaymentTaxPointBetween(String value1, String value2) {
             addCriterion("payment_tax_point between", value1, value2, "paymentTaxPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentTaxPointNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andPaymentTaxPointNotBetween(String value1, String value2) {
             addCriterion("payment_tax_point not between", value1, value2, "paymentTaxPoint");
             return (Criteria) this;
         }
@@ -366,52 +385,62 @@ public class PaymentExample {
             return (Criteria) this;
         }
 
-        public Criteria andPaymentStrikeEqualTo(BigDecimal value) {
+        public Criteria andPaymentStrikeEqualTo(String value) {
             addCriterion("payment_strike =", value, "paymentStrike");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentStrikeNotEqualTo(BigDecimal value) {
+        public Criteria andPaymentStrikeNotEqualTo(String value) {
             addCriterion("payment_strike <>", value, "paymentStrike");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentStrikeGreaterThan(BigDecimal value) {
+        public Criteria andPaymentStrikeGreaterThan(String value) {
             addCriterion("payment_strike >", value, "paymentStrike");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentStrikeGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andPaymentStrikeGreaterThanOrEqualTo(String value) {
             addCriterion("payment_strike >=", value, "paymentStrike");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentStrikeLessThan(BigDecimal value) {
+        public Criteria andPaymentStrikeLessThan(String value) {
             addCriterion("payment_strike <", value, "paymentStrike");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentStrikeLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andPaymentStrikeLessThanOrEqualTo(String value) {
             addCriterion("payment_strike <=", value, "paymentStrike");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentStrikeIn(List<BigDecimal> values) {
+        public Criteria andPaymentStrikeLike(String value) {
+            addCriterion("payment_strike like", value, "paymentStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentStrikeNotLike(String value) {
+            addCriterion("payment_strike not like", value, "paymentStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentStrikeIn(List<String> values) {
             addCriterion("payment_strike in", values, "paymentStrike");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentStrikeNotIn(List<BigDecimal> values) {
+        public Criteria andPaymentStrikeNotIn(List<String> values) {
             addCriterion("payment_strike not in", values, "paymentStrike");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentStrikeBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andPaymentStrikeBetween(String value1, String value2) {
             addCriterion("payment_strike between", value1, value2, "paymentStrike");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentStrikeNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andPaymentStrikeNotBetween(String value1, String value2) {
             addCriterion("payment_strike not between", value1, value2, "paymentStrike");
             return (Criteria) this;
         }
@@ -426,52 +455,62 @@ public class PaymentExample {
             return (Criteria) this;
         }
 
-        public Criteria andPaymentInputMoneyEqualTo(BigDecimal value) {
+        public Criteria andPaymentInputMoneyEqualTo(String value) {
             addCriterion("payment_input_money =", value, "paymentInputMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentInputMoneyNotEqualTo(BigDecimal value) {
+        public Criteria andPaymentInputMoneyNotEqualTo(String value) {
             addCriterion("payment_input_money <>", value, "paymentInputMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentInputMoneyGreaterThan(BigDecimal value) {
+        public Criteria andPaymentInputMoneyGreaterThan(String value) {
             addCriterion("payment_input_money >", value, "paymentInputMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentInputMoneyGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andPaymentInputMoneyGreaterThanOrEqualTo(String value) {
             addCriterion("payment_input_money >=", value, "paymentInputMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentInputMoneyLessThan(BigDecimal value) {
+        public Criteria andPaymentInputMoneyLessThan(String value) {
             addCriterion("payment_input_money <", value, "paymentInputMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentInputMoneyLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andPaymentInputMoneyLessThanOrEqualTo(String value) {
             addCriterion("payment_input_money <=", value, "paymentInputMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentInputMoneyIn(List<BigDecimal> values) {
+        public Criteria andPaymentInputMoneyLike(String value) {
+            addCriterion("payment_input_money like", value, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyNotLike(String value) {
+            addCriterion("payment_input_money not like", value, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyIn(List<String> values) {
             addCriterion("payment_input_money in", values, "paymentInputMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentInputMoneyNotIn(List<BigDecimal> values) {
+        public Criteria andPaymentInputMoneyNotIn(List<String> values) {
             addCriterion("payment_input_money not in", values, "paymentInputMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentInputMoneyBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andPaymentInputMoneyBetween(String value1, String value2) {
             addCriterion("payment_input_money between", value1, value2, "paymentInputMoney");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentInputMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andPaymentInputMoneyNotBetween(String value1, String value2) {
             addCriterion("payment_input_money not between", value1, value2, "paymentInputMoney");
             return (Criteria) this;
         }

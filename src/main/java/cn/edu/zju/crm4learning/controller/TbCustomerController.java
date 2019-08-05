@@ -1,7 +1,7 @@
 package cn.edu.zju.crm4learning.controller;
 
-import cn.edu.zju.crm4learning.pojo.Customer;
-import cn.edu.zju.crm4learning.service.CustomerService;
+import cn.edu.zju.crm4learning.pojo.TbCustomer;
+import cn.edu.zju.crm4learning.service.TbCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +20,10 @@ import java.util.List;
  */
 @RequestMapping("/customer")
 @Controller
-public class CustomerController {
+public class TbCustomerController {
 
     @Autowired
-    private CustomerService customerService;
+    private TbCustomerService tbCustomerService;
 
     /**
      * produces = "application/json; charset=utf-8"  和ajax的 contentType: 'application/json',
@@ -32,14 +32,14 @@ public class CustomerController {
     @RequestMapping(value = "/getCustomerPhone", produces = "application/json; charset=utf-8")
     @ResponseBody
     public String getCustomerPhone(@RequestParam(value = "customerName") String customerName) {
-        String customerPhone = customerService.getCustomerPhone(customerName);
+        String customerPhone = tbCustomerService.getCustomerPhone(customerName);
         return customerPhone;
     }
 
     @RequestMapping("/getCustomers")
     @ResponseBody
-    public List<Customer> getCustomers() {
-        return customerService.getCustomers();
+    public List<TbCustomer> getCustomers() {
+        return tbCustomerService.getCustomers();
     }
 }
 

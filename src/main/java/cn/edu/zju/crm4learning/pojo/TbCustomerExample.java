@@ -3,14 +3,14 @@ package cn.edu.zju.crm4learning.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerExample {
+public class TbCustomerExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public CustomerExample() {
+    public TbCustomerExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

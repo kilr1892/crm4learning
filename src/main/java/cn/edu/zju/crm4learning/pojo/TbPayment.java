@@ -1,20 +1,19 @@
 package cn.edu.zju.crm4learning.pojo;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
-public class Payment {
+public class TbPayment {
     private String paymentOrderId;
 
     private Date paymentDate;
 
-    private BigDecimal paymentCuttingWage;
+    private String paymentCuttingWage;
 
-    private BigDecimal paymentTaxPoint;
+    private String paymentTaxPoint;
 
-    private BigDecimal paymentStrike;
+    private String paymentStrike;
 
-    private BigDecimal paymentInputMoney;
+    private String paymentInputMoney;
 
     private String paymentMethod;
 
@@ -34,36 +33,36 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    public BigDecimal getPaymentCuttingWage() {
+    public String getPaymentCuttingWage() {
         return paymentCuttingWage;
     }
 
-    public void setPaymentCuttingWage(BigDecimal paymentCuttingWage) {
-        this.paymentCuttingWage = paymentCuttingWage;
+    public void setPaymentCuttingWage(String paymentCuttingWage) {
+        this.paymentCuttingWage = paymentCuttingWage == null ? null : paymentCuttingWage.trim();
     }
 
-    public BigDecimal getPaymentTaxPoint() {
+    public String getPaymentTaxPoint() {
         return paymentTaxPoint;
     }
 
-    public void setPaymentTaxPoint(BigDecimal paymentTaxPoint) {
-        this.paymentTaxPoint = paymentTaxPoint;
+    public void setPaymentTaxPoint(String paymentTaxPoint) {
+        this.paymentTaxPoint = paymentTaxPoint == null ? null : paymentTaxPoint.trim();
     }
 
-    public BigDecimal getPaymentStrike() {
+    public String getPaymentStrike() {
         return paymentStrike;
     }
 
-    public void setPaymentStrike(BigDecimal paymentStrike) {
-        this.paymentStrike = paymentStrike;
+    public void setPaymentStrike(String paymentStrike) {
+        this.paymentStrike = paymentStrike == null ? null : paymentStrike.trim();
     }
 
-    public BigDecimal getPaymentInputMoney() {
+    public String getPaymentInputMoney() {
         return paymentInputMoney;
     }
 
-    public void setPaymentInputMoney(BigDecimal paymentInputMoney) {
-        this.paymentInputMoney = paymentInputMoney;
+    public void setPaymentInputMoney(String paymentInputMoney) {
+        this.paymentInputMoney = paymentInputMoney == null ? null : paymentInputMoney.trim();
     }
 
     public String getPaymentMethod() {
