@@ -9,9 +9,13 @@ package cn.edu.zju.crm4learning.pojo;
  * @version v1.0
  */
 public class TbOrderId {
+
     private String orderDay;
     private String orderNum;
     private String orderId;
+
+    public TbOrderId() {
+    }
 
     public TbOrderId(String orderDay, String orderNum, String orderId) {
         this.orderDay = orderDay;
@@ -43,3 +47,4 @@ public class TbOrderId {
         this.orderId = orderId;
     }
 }
+

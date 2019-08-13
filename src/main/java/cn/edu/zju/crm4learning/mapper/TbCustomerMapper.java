@@ -11,7 +11,7 @@ public interface TbCustomerMapper {
 
     int deleteByExample(TbCustomerExample example);
 
-    int deleteByPrimaryKey(String customId);
+    int deleteByPrimaryKey(Integer customerId);
 
     int insert(TbCustomer record);
 
@@ -19,7 +19,7 @@ public interface TbCustomerMapper {
 
     List<TbCustomer> selectByExample(TbCustomerExample example);
 
-    TbCustomer selectByPrimaryKey(String customId);
+    TbCustomer selectByPrimaryKey(Integer customerId);
 
     int updateByExampleSelective(@Param("record") TbCustomer record, @Param("example") TbCustomerExample example);
 

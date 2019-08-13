@@ -2,9 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.zju.crm4learning.mapper.TbCustomerMapper" >
   <resultMap id="BaseResultMap" type="cn.edu.zju.crm4learning.pojo.TbCustomer" >
-    <id column="custom_id" property="customId" jdbcType="VARCHAR" />
-    <result column="custom_name" property="customName" jdbcType="VARCHAR" />
-    <result column="custom_phone" property="customPhone" jdbcType="VARCHAR" />
+    <id column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="customer_phone" property="customerPhone" jdbcType="VARCHAR" />
+    <result column="customer_remarks" property="customerRemarks" jdbcType="VARCHAR" />
+    <result column="customer_receivables" property="customerReceivables" jdbcType="DECIMAL" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    custom_id, custom_name, custom_phone
+    customer_id, customer_name, customer_phone, customer_remarks, customer_receivables
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.zju.crm4learning.pojo.TbCustomerExample" >
     select
@@ -78,18 +80,18 @@
       <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
-      tbOrder by ${orderByClause}
+      order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from tb_customer
-    where custom_id = #{customId,jdbcType=VARCHAR}
+    where customer_id = #{customerId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_customer
-    where custom_id = #{customId,jdbcType=VARCHAR}
+    where customer_id = #{customerId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="cn.edu.zju.crm4learning.pojo.TbCustomerExample" >
     delete from tb_customer
@@ -98,33 +100,45 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.edu.zju.crm4learning.pojo.TbCustomer" >
-    insert into tb_customer (custom_id, custom_name, custom_phone
-      )
-    values (#{customId,jdbcType=VARCHAR}, #{customName,jdbcType=VARCHAR}, #{customPhone,jdbcType=VARCHAR}
-      )
+    insert into tb_customer (customer_id, customer_name, customer_phone, 
+      customer_remarks, customer_receivables)
+    values (#{customerId,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, #{customerPhone,jdbcType=VARCHAR}, 
+      #{customerRemarks,jdbcType=VARCHAR}, #{customerReceivables,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.zju.crm4learning.pojo.TbCustomer" >
     insert into tb_customer
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="customId != null" >
-        custom_id,
+      <if test="customerId != null" >
+        customer_id,
       </if>
-      <if test="customName != null" >
-        custom_name,
+      <if test="customerName != null" >
+        customer_name,
       </if>
-      <if test="customPhone != null" >
-        custom_phone,
+      <if test="customerPhone != null" >
+        customer_phone,
+      </if>
+      <if test="customerRemarks != null" >
+        customer_remarks,
+      </if>
+      <if test="customerReceivables != null" >
+        customer_receivables,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="customId != null" >
-        #{customId,jdbcType=VARCHAR},
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
       </if>
-      <if test="customName != null" >
-        #{customName,jdbcType=VARCHAR},
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
       </if>
-      <if test="customPhone != null" >
-        #{customPhone,jdbcType=VARCHAR},
+      <if test="customerPhone != null" >
+        #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerRemarks != null" >
+        #{customerRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="customerReceivables != null" >
+        #{customerReceivables,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -137,14 +151,20 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update tb_customer
     <set >
-      <if test="record.customId != null" >
-        custom_id = #{record.customId,jdbcType=VARCHAR},
+      <if test="record.customerId != null" >
+        customer_id = #{record.customerId,jdbcType=INTEGER},
       </if>
-      <if test="record.customName != null" >
-        custom_name = #{record.customName,jdbcType=VARCHAR},
+      <if test="record.customerName != null" >
+        customer_name = #{record.customerName,jdbcType=VARCHAR},
       </if>
-      <if test="record.customPhone != null" >
-        custom_phone = #{record.customPhone,jdbcType=VARCHAR},
+      <if test="record.customerPhone != null" >
+        customer_phone = #{record.customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerRemarks != null" >
+        customer_remarks = #{record.customerRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerReceivables != null" >
+        customer_receivables = #{record.customerReceivables,jdbcType=DECIMAL},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -153,9 +173,11 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update tb_customer
-    set custom_id = #{record.customId,jdbcType=VARCHAR},
-      custom_name = #{record.customName,jdbcType=VARCHAR},
-      custom_phone = #{record.customPhone,jdbcType=VARCHAR}
+    set customer_id = #{record.customerId,jdbcType=INTEGER},
+      customer_name = #{record.customerName,jdbcType=VARCHAR},
+      customer_phone = #{record.customerPhone,jdbcType=VARCHAR},
+      customer_remarks = #{record.customerRemarks,jdbcType=VARCHAR},
+      customer_receivables = #{record.customerReceivables,jdbcType=DECIMAL}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -163,19 +185,27 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zju.crm4learning.pojo.TbCustomer" >
     update tb_customer
     <set >
-      <if test="customName != null" >
-        custom_name = #{customName,jdbcType=VARCHAR},
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
       </if>
-      <if test="customPhone != null" >
-        custom_phone = #{customPhone,jdbcType=VARCHAR},
+      <if test="customerPhone != null" >
+        customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerRemarks != null" >
+        customer_remarks = #{customerRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="customerReceivables != null" >
+        customer_receivables = #{customerReceivables,jdbcType=DECIMAL},
       </if>
     </set>
-    where custom_id = #{customId,jdbcType=VARCHAR}
+    where customer_id = #{customerId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.edu.zju.crm4learning.pojo.TbCustomer" >
     update tb_customer
-    set custom_name = #{customName,jdbcType=VARCHAR},
-      custom_phone = #{customPhone,jdbcType=VARCHAR}
-    where custom_id = #{customId,jdbcType=VARCHAR}
+    set customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      customer_remarks = #{customerRemarks,jdbcType=VARCHAR},
+      customer_receivables = #{customerReceivables,jdbcType=DECIMAL}
+    where customer_id = #{customerId,jdbcType=INTEGER}
   </update>
 </mapper>

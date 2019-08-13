@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>订单输入</title>
-    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
     <style type="text/css">
         table {
             border-collapse: collapse;
@@ -34,13 +35,14 @@
 </head>
 <body>
 <%@ include file="common/header.jsp" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <form id="orderAddForm" method="post">
     <table style="border: 1px solid black;width: 900px;">
         <tr>
             <th colspan="9">温州奥格塑业客户订货单${orderId.orderDay}-${orderId.orderNum}</th>
             <input type="hidden" name="orderId" value="${orderId.orderId}"/>
+<%--            <input type="hidden" name="orderPrimaryKey" value="${orderId.orderPrimaryKey}"/>--%>
         </tr>
         <tr>
             <td colspan="2">客户名称</td>
@@ -49,7 +51,7 @@
                 <datalist id="customersName">
                     <%--                用jstl循环, (考虑用redis)--%>
                     <c:forEach items="${customers}" var="customers">
-                    <option value="${customers.customName}">
+                    <option value="${customers.customerName}">
                         </c:forEach>
                 </datalist>
                 <input type="hidden" id="orderCustomerId" name="orderCustomerId"/>
@@ -68,7 +70,7 @@
             <td>交货日期</td>
             <td colspan="2">
 <%--                <input style="width:100%" name="orderDate" type="date"/>--%>
-                <input style="width:100%" name="orderDate" type="date"/>
+                <input style="width:100%" name="orderDeliveryDate" type="date"/>
             </td>
         </tr>
         <tr>
@@ -178,8 +180,8 @@
                 dataType: 'json',
                 contentType: 'application/json',
                 success: function (data) {
-                    $("#getCustomerPhone").val(data[0].customPhone);
-                    $("#orderCustomerId").val(data[0].customId);
+                    $("#getCustomerPhone").val(data[0].customerPhone);
+                    $("#orderCustomerId").val(data[0].customerId);
                 }
             });
         }

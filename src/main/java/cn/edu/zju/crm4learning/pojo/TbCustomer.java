@@ -1,33 +1,55 @@
 package cn.edu.zju.crm4learning.pojo;
 
+import java.math.BigDecimal;
+
 public class TbCustomer {
-    private String customId;
+    private Integer customerId;
 
-    private String customName;
+    private String customerName;
 
-    private String customPhone;
+    private String customerPhone;
 
-    public String getCustomId() {
-        return customId;
+    private String customerRemarks;
+
+    private BigDecimal customerReceivables;
+
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomId(String customId) {
-        this.customId = customId == null ? null : customId.trim();
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
-    public String getCustomName() {
-        return customName;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCustomName(String customName) {
-        this.customName = customName == null ? null : customName.trim();
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName == null ? null : customerName.trim();
     }
 
-    public String getCustomPhone() {
-        return customPhone;
+    public String getCustomerPhone() {
+        return customerPhone;
     }
 
-    public void setCustomPhone(String customPhone) {
-        this.customPhone = customPhone == null ? null : customPhone.trim();
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone == null ? null : customerPhone.trim();
+    }
+
+    public String getCustomerRemarks() {
+        return customerRemarks;
+    }
+
+    public void setCustomerRemarks(String customerRemarks) {
+        this.customerRemarks = customerRemarks == null ? null : customerRemarks.trim();
+    }
+
+    public BigDecimal getCustomerReceivables() {
+        return customerReceivables;
+    }
+
+    public void setCustomerReceivables(BigDecimal customerReceivables) {
+        this.customerReceivables = customerReceivables;
     }
 }

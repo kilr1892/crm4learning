@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class TbCustomerServiceImpl implements TbCustomerService {
     public List<TbCustomer> getCustomers() {
         TbCustomerExample customerExample = new TbCustomerExample();
         TbCustomerExample.Criteria criteria = customerExample.createCriteria();
-        criteria.andCustomIdIsNotNull();
+        criteria.andCustomerIdIsNotNull();
         List<TbCustomer> customers = tbCustomerMapper.selectByExample(customerExample);
         return customers;
     }
@@ -38,7 +39,7 @@ public class TbCustomerServiceImpl implements TbCustomerService {
     public String getCustomerPhone(String customerName) {
         TbCustomerExample customerExample = new TbCustomerExample();
         TbCustomerExample.Criteria criteria = customerExample.createCriteria();
-        criteria.andCustomNameEqualTo(customerName);
+        criteria.andCustomerNameEqualTo(customerName);
         List<TbCustomer> customers = tbCustomerMapper.selectByExample(customerExample);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -50,5 +51,30 @@ public class TbCustomerServiceImpl implements TbCustomerService {
         }
         return null;
     }
-    
+
+    @Override
+    public BigDecimal selectCustomerReceivables(String customerName) {
+        TbCustomerExample tbCustomerExample = new TbCustomerExample();
+        TbCustomerExample.Criteria criteria = tbCustomerExample.createCriteria();
+        criteria.andCustomerNameEqualTo(customerName);
+        List<TbCustomer> tbCustomers = tbCustomerMapper.selectByExample(tbCustomerExample);
+        TbCustomer tbCustomer = tbCustomers.get(0);
+        if (tbCustomer == null) {
+            return BigDecimal.valueOf(0);
+        }
+        BigDecimal customerReceivables = tbCustomer.getCustomerReceivables();
+        return customerReceivables;
+    }
+
+    @Override
+    public void updateCustomerReceivables(String orderCustomerName,BigDecimal showEveryReceivables) {
+        TbCustomerExample tbCustomerExample = new TbCustomerExample();
+        TbCustomerExample.Criteria criteria = tbCustomerExample.createCriteria();
+        criteria.andCustomerNameEqualTo(orderCustomerName);
+
+        TbCustomer record = new TbCustomer();
+        record.setCustomerReceivables(showEveryReceivables);
+        tbCustomerMapper.updateByExampleSelective(record, tbCustomerExample);
+    }
+
 }

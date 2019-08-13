@@ -1,5 +1,6 @@
 package cn.edu.zju.crm4learning.pojo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -132,6 +133,66 @@ public class TbOrderExample {
             addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
+        public Criteria andPrimaryKeyForOrderIsNull() {
+            addCriterion("primary_key_for_order is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimaryKeyForOrderIsNotNull() {
+            addCriterion("primary_key_for_order is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimaryKeyForOrderEqualTo(Integer value) {
+            addCriterion("primary_key_for_order =", value, "primaryKeyForOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimaryKeyForOrderNotEqualTo(Integer value) {
+            addCriterion("primary_key_for_order <>", value, "primaryKeyForOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimaryKeyForOrderGreaterThan(Integer value) {
+            addCriterion("primary_key_for_order >", value, "primaryKeyForOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimaryKeyForOrderGreaterThanOrEqualTo(Integer value) {
+            addCriterion("primary_key_for_order >=", value, "primaryKeyForOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimaryKeyForOrderLessThan(Integer value) {
+            addCriterion("primary_key_for_order <", value, "primaryKeyForOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimaryKeyForOrderLessThanOrEqualTo(Integer value) {
+            addCriterion("primary_key_for_order <=", value, "primaryKeyForOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimaryKeyForOrderIn(List<Integer> values) {
+            addCriterion("primary_key_for_order in", values, "primaryKeyForOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimaryKeyForOrderNotIn(List<Integer> values) {
+            addCriterion("primary_key_for_order not in", values, "primaryKeyForOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimaryKeyForOrderBetween(Integer value1, Integer value2) {
+            addCriterion("primary_key_for_order between", value1, value2, "primaryKeyForOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimaryKeyForOrderNotBetween(Integer value1, Integer value2) {
+            addCriterion("primary_key_for_order not between", value1, value2, "primaryKeyForOrder");
+            return (Criteria) this;
+        }
+
         public Criteria andOrderIdIsNull() {
             addCriterion("order_id is null");
             return (Criteria) this;
@@ -259,6 +320,66 @@ public class TbOrderExample {
 
         public Criteria andOrderDateNotBetween(Date value1, Date value2) {
             addCriterionForJDBCDate("order_date not between", value1, value2, "orderDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateIsNull() {
+            addCriterion("order_delivery_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateIsNotNull() {
+            addCriterion("order_delivery_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateEqualTo(Date value) {
+            addCriterionForJDBCDate("order_delivery_date =", value, "orderDeliveryDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("order_delivery_date <>", value, "orderDeliveryDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("order_delivery_date >", value, "orderDeliveryDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("order_delivery_date >=", value, "orderDeliveryDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateLessThan(Date value) {
+            addCriterionForJDBCDate("order_delivery_date <", value, "orderDeliveryDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("order_delivery_date <=", value, "orderDeliveryDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateIn(List<Date> values) {
+            addCriterionForJDBCDate("order_delivery_date in", values, "orderDeliveryDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("order_delivery_date not in", values, "orderDeliveryDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("order_delivery_date between", value1, value2, "orderDeliveryDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderDeliveryDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("order_delivery_date not between", value1, value2, "orderDeliveryDate");
             return (Criteria) this;
         }
 
@@ -832,62 +953,52 @@ public class TbOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderMaterialWeightEqualTo(String value) {
+        public Criteria andOrderMaterialWeightEqualTo(BigDecimal value) {
             addCriterion("order_material_weight =", value, "orderMaterialWeight");
             return (Criteria) this;
         }
 
-        public Criteria andOrderMaterialWeightNotEqualTo(String value) {
+        public Criteria andOrderMaterialWeightNotEqualTo(BigDecimal value) {
             addCriterion("order_material_weight <>", value, "orderMaterialWeight");
             return (Criteria) this;
         }
 
-        public Criteria andOrderMaterialWeightGreaterThan(String value) {
+        public Criteria andOrderMaterialWeightGreaterThan(BigDecimal value) {
             addCriterion("order_material_weight >", value, "orderMaterialWeight");
             return (Criteria) this;
         }
 
-        public Criteria andOrderMaterialWeightGreaterThanOrEqualTo(String value) {
+        public Criteria andOrderMaterialWeightGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("order_material_weight >=", value, "orderMaterialWeight");
             return (Criteria) this;
         }
 
-        public Criteria andOrderMaterialWeightLessThan(String value) {
+        public Criteria andOrderMaterialWeightLessThan(BigDecimal value) {
             addCriterion("order_material_weight <", value, "orderMaterialWeight");
             return (Criteria) this;
         }
 
-        public Criteria andOrderMaterialWeightLessThanOrEqualTo(String value) {
+        public Criteria andOrderMaterialWeightLessThanOrEqualTo(BigDecimal value) {
             addCriterion("order_material_weight <=", value, "orderMaterialWeight");
             return (Criteria) this;
         }
 
-        public Criteria andOrderMaterialWeightLike(String value) {
-            addCriterion("order_material_weight like", value, "orderMaterialWeight");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderMaterialWeightNotLike(String value) {
-            addCriterion("order_material_weight not like", value, "orderMaterialWeight");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderMaterialWeightIn(List<String> values) {
+        public Criteria andOrderMaterialWeightIn(List<BigDecimal> values) {
             addCriterion("order_material_weight in", values, "orderMaterialWeight");
             return (Criteria) this;
         }
 
-        public Criteria andOrderMaterialWeightNotIn(List<String> values) {
+        public Criteria andOrderMaterialWeightNotIn(List<BigDecimal> values) {
             addCriterion("order_material_weight not in", values, "orderMaterialWeight");
             return (Criteria) this;
         }
 
-        public Criteria andOrderMaterialWeightBetween(String value1, String value2) {
+        public Criteria andOrderMaterialWeightBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("order_material_weight between", value1, value2, "orderMaterialWeight");
             return (Criteria) this;
         }
 
-        public Criteria andOrderMaterialWeightNotBetween(String value1, String value2) {
+        public Criteria andOrderMaterialWeightNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("order_material_weight not between", value1, value2, "orderMaterialWeight");
             return (Criteria) this;
         }
@@ -1042,62 +1153,52 @@ public class TbOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderPriceEqualTo(String value) {
+        public Criteria andOrderPriceEqualTo(BigDecimal value) {
             addCriterion("order_price =", value, "orderPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderPriceNotEqualTo(String value) {
+        public Criteria andOrderPriceNotEqualTo(BigDecimal value) {
             addCriterion("order_price <>", value, "orderPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderPriceGreaterThan(String value) {
+        public Criteria andOrderPriceGreaterThan(BigDecimal value) {
             addCriterion("order_price >", value, "orderPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderPriceGreaterThanOrEqualTo(String value) {
+        public Criteria andOrderPriceGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("order_price >=", value, "orderPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderPriceLessThan(String value) {
+        public Criteria andOrderPriceLessThan(BigDecimal value) {
             addCriterion("order_price <", value, "orderPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderPriceLessThanOrEqualTo(String value) {
+        public Criteria andOrderPriceLessThanOrEqualTo(BigDecimal value) {
             addCriterion("order_price <=", value, "orderPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderPriceLike(String value) {
-            addCriterion("order_price like", value, "orderPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderPriceNotLike(String value) {
-            addCriterion("order_price not like", value, "orderPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderPriceIn(List<String> values) {
+        public Criteria andOrderPriceIn(List<BigDecimal> values) {
             addCriterion("order_price in", values, "orderPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderPriceNotIn(List<String> values) {
+        public Criteria andOrderPriceNotIn(List<BigDecimal> values) {
             addCriterion("order_price not in", values, "orderPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderPriceBetween(String value1, String value2) {
+        public Criteria andOrderPriceBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("order_price between", value1, value2, "orderPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderPriceNotBetween(String value1, String value2) {
+        public Criteria andOrderPriceNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("order_price not between", value1, value2, "orderPrice");
             return (Criteria) this;
         }
@@ -1112,62 +1213,52 @@ public class TbOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderTotalPriceEqualTo(String value) {
+        public Criteria andOrderTotalPriceEqualTo(BigDecimal value) {
             addCriterion("order_total_price =", value, "orderTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTotalPriceNotEqualTo(String value) {
+        public Criteria andOrderTotalPriceNotEqualTo(BigDecimal value) {
             addCriterion("order_total_price <>", value, "orderTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTotalPriceGreaterThan(String value) {
+        public Criteria andOrderTotalPriceGreaterThan(BigDecimal value) {
             addCriterion("order_total_price >", value, "orderTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTotalPriceGreaterThanOrEqualTo(String value) {
+        public Criteria andOrderTotalPriceGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("order_total_price >=", value, "orderTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTotalPriceLessThan(String value) {
+        public Criteria andOrderTotalPriceLessThan(BigDecimal value) {
             addCriterion("order_total_price <", value, "orderTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTotalPriceLessThanOrEqualTo(String value) {
+        public Criteria andOrderTotalPriceLessThanOrEqualTo(BigDecimal value) {
             addCriterion("order_total_price <=", value, "orderTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTotalPriceLike(String value) {
-            addCriterion("order_total_price like", value, "orderTotalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderTotalPriceNotLike(String value) {
-            addCriterion("order_total_price not like", value, "orderTotalPrice");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrderTotalPriceIn(List<String> values) {
+        public Criteria andOrderTotalPriceIn(List<BigDecimal> values) {
             addCriterion("order_total_price in", values, "orderTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTotalPriceNotIn(List<String> values) {
+        public Criteria andOrderTotalPriceNotIn(List<BigDecimal> values) {
             addCriterion("order_total_price not in", values, "orderTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTotalPriceBetween(String value1, String value2) {
+        public Criteria andOrderTotalPriceBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("order_total_price between", value1, value2, "orderTotalPrice");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTotalPriceNotBetween(String value1, String value2) {
+        public Criteria andOrderTotalPriceNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("order_total_price not between", value1, value2, "orderTotalPrice");
             return (Criteria) this;
         }
@@ -1239,6 +1330,446 @@ public class TbOrderExample {
 
         public Criteria andOrderRemarksNotBetween(String value1, String value2) {
             addCriterion("order_remarks not between", value1, value2, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageIsNull() {
+            addCriterion("order_cutting_wage is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageIsNotNull() {
+            addCriterion("order_cutting_wage is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageEqualTo(BigDecimal value) {
+            addCriterion("order_cutting_wage =", value, "orderCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageNotEqualTo(BigDecimal value) {
+            addCriterion("order_cutting_wage <>", value, "orderCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageGreaterThan(BigDecimal value) {
+            addCriterion("order_cutting_wage >", value, "orderCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("order_cutting_wage >=", value, "orderCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageLessThan(BigDecimal value) {
+            addCriterion("order_cutting_wage <", value, "orderCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("order_cutting_wage <=", value, "orderCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageIn(List<BigDecimal> values) {
+            addCriterion("order_cutting_wage in", values, "orderCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageNotIn(List<BigDecimal> values) {
+            addCriterion("order_cutting_wage not in", values, "orderCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("order_cutting_wage between", value1, value2, "orderCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderCuttingWageNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("order_cutting_wage not between", value1, value2, "orderCuttingWage");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointIsNull() {
+            addCriterion("order_tax_point is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointIsNotNull() {
+            addCriterion("order_tax_point is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointEqualTo(BigDecimal value) {
+            addCriterion("order_tax_point =", value, "orderTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointNotEqualTo(BigDecimal value) {
+            addCriterion("order_tax_point <>", value, "orderTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointGreaterThan(BigDecimal value) {
+            addCriterion("order_tax_point >", value, "orderTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("order_tax_point >=", value, "orderTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointLessThan(BigDecimal value) {
+            addCriterion("order_tax_point <", value, "orderTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("order_tax_point <=", value, "orderTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointIn(List<BigDecimal> values) {
+            addCriterion("order_tax_point in", values, "orderTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointNotIn(List<BigDecimal> values) {
+            addCriterion("order_tax_point not in", values, "orderTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("order_tax_point between", value1, value2, "orderTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTaxPointNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("order_tax_point not between", value1, value2, "orderTaxPoint");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeIsNull() {
+            addCriterion("order_strike is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeIsNotNull() {
+            addCriterion("order_strike is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeEqualTo(BigDecimal value) {
+            addCriterion("order_strike =", value, "orderStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeNotEqualTo(BigDecimal value) {
+            addCriterion("order_strike <>", value, "orderStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeGreaterThan(BigDecimal value) {
+            addCriterion("order_strike >", value, "orderStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("order_strike >=", value, "orderStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeLessThan(BigDecimal value) {
+            addCriterion("order_strike <", value, "orderStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("order_strike <=", value, "orderStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeIn(List<BigDecimal> values) {
+            addCriterion("order_strike in", values, "orderStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeNotIn(List<BigDecimal> values) {
+            addCriterion("order_strike not in", values, "orderStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("order_strike between", value1, value2, "orderStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderStrikeNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("order_strike not between", value1, value2, "orderStrike");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyIsNull() {
+            addCriterion("payment_input_money is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyIsNotNull() {
+            addCriterion("payment_input_money is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyEqualTo(BigDecimal value) {
+            addCriterion("payment_input_money =", value, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyNotEqualTo(BigDecimal value) {
+            addCriterion("payment_input_money <>", value, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyGreaterThan(BigDecimal value) {
+            addCriterion("payment_input_money >", value, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("payment_input_money >=", value, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyLessThan(BigDecimal value) {
+            addCriterion("payment_input_money <", value, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("payment_input_money <=", value, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyIn(List<BigDecimal> values) {
+            addCriterion("payment_input_money in", values, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyNotIn(List<BigDecimal> values) {
+            addCriterion("payment_input_money not in", values, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("payment_input_money between", value1, value2, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentInputMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("payment_input_money not between", value1, value2, "paymentInputMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesIsNull() {
+            addCriterion("show_every_receivables is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesIsNotNull() {
+            addCriterion("show_every_receivables is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesEqualTo(BigDecimal value) {
+            addCriterion("show_every_receivables =", value, "showEveryReceivables");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesNotEqualTo(BigDecimal value) {
+            addCriterion("show_every_receivables <>", value, "showEveryReceivables");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesGreaterThan(BigDecimal value) {
+            addCriterion("show_every_receivables >", value, "showEveryReceivables");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("show_every_receivables >=", value, "showEveryReceivables");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesLessThan(BigDecimal value) {
+            addCriterion("show_every_receivables <", value, "showEveryReceivables");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("show_every_receivables <=", value, "showEveryReceivables");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesIn(List<BigDecimal> values) {
+            addCriterion("show_every_receivables in", values, "showEveryReceivables");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesNotIn(List<BigDecimal> values) {
+            addCriterion("show_every_receivables not in", values, "showEveryReceivables");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("show_every_receivables between", value1, value2, "showEveryReceivables");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowEveryReceivablesNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("show_every_receivables not between", value1, value2, "showEveryReceivables");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodIsNull() {
+            addCriterion("payment_method is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodIsNotNull() {
+            addCriterion("payment_method is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodEqualTo(String value) {
+            addCriterion("payment_method =", value, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodNotEqualTo(String value) {
+            addCriterion("payment_method <>", value, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodGreaterThan(String value) {
+            addCriterion("payment_method >", value, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodGreaterThanOrEqualTo(String value) {
+            addCriterion("payment_method >=", value, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodLessThan(String value) {
+            addCriterion("payment_method <", value, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodLessThanOrEqualTo(String value) {
+            addCriterion("payment_method <=", value, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodLike(String value) {
+            addCriterion("payment_method like", value, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodNotLike(String value) {
+            addCriterion("payment_method not like", value, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodIn(List<String> values) {
+            addCriterion("payment_method in", values, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodNotIn(List<String> values) {
+            addCriterion("payment_method not in", values, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodBetween(String value1, String value2) {
+            addCriterion("payment_method between", value1, value2, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentMethodNotBetween(String value1, String value2) {
+            addCriterion("payment_method not between", value1, value2, "paymentMethod");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksIsNull() {
+            addCriterion("payment_remarks is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksIsNotNull() {
+            addCriterion("payment_remarks is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksEqualTo(String value) {
+            addCriterion("payment_remarks =", value, "paymentRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksNotEqualTo(String value) {
+            addCriterion("payment_remarks <>", value, "paymentRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksGreaterThan(String value) {
+            addCriterion("payment_remarks >", value, "paymentRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksGreaterThanOrEqualTo(String value) {
+            addCriterion("payment_remarks >=", value, "paymentRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksLessThan(String value) {
+            addCriterion("payment_remarks <", value, "paymentRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksLessThanOrEqualTo(String value) {
+            addCriterion("payment_remarks <=", value, "paymentRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksLike(String value) {
+            addCriterion("payment_remarks like", value, "paymentRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksNotLike(String value) {
+            addCriterion("payment_remarks not like", value, "paymentRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksIn(List<String> values) {
+            addCriterion("payment_remarks in", values, "paymentRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksNotIn(List<String> values) {
+            addCriterion("payment_remarks not in", values, "paymentRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksBetween(String value1, String value2) {
+            addCriterion("payment_remarks between", value1, value2, "paymentRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentRemarksNotBetween(String value1, String value2) {
+            addCriterion("payment_remarks not between", value1, value2, "paymentRemarks");
             return (Criteria) this;
         }
     }

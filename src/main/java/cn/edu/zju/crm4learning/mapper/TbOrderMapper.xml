@@ -2,8 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.edu.zju.crm4learning.mapper.TbOrderMapper" >
   <resultMap id="BaseResultMap" type="cn.edu.zju.crm4learning.pojo.TbOrder" >
+    <id column="primary_key_for_order" property="primaryKeyForOrder" jdbcType="INTEGER" />
     <result column="order_id" property="orderId" jdbcType="VARCHAR" />
     <result column="order_date" property="orderDate" jdbcType="DATE" />
+    <result column="order_delivery_date" property="orderDeliveryDate" jdbcType="DATE" />
     <result column="order_customer_id" property="orderCustomerId" jdbcType="VARCHAR" />
     <result column="order_customer_name" property="orderCustomerName" jdbcType="VARCHAR" />
     <result column="order_customer_phone" property="orderCustomerPhone" jdbcType="VARCHAR" />
@@ -12,12 +14,19 @@
     <result column="order_material_color" property="orderMaterialColor" jdbcType="VARCHAR" />
     <result column="order_material_specifications" property="orderMaterialSpecifications" jdbcType="VARCHAR" />
     <result column="order_material_meter" property="orderMaterialMeter" jdbcType="VARCHAR" />
-    <result column="order_material_weight" property="orderMaterialWeight" jdbcType="VARCHAR" />
+    <result column="order_material_weight" property="orderMaterialWeight" jdbcType="DECIMAL" />
     <result column="order_material_corona" property="orderMaterialCorona" jdbcType="VARCHAR" />
     <result column="order_material_folding_mouth" property="orderMaterialFoldingMouth" jdbcType="VARCHAR" />
-    <result column="order_price" property="orderPrice" jdbcType="VARCHAR" />
-    <result column="order_total_price" property="orderTotalPrice" jdbcType="VARCHAR" />
+    <result column="order_price" property="orderPrice" jdbcType="DECIMAL" />
+    <result column="order_total_price" property="orderTotalPrice" jdbcType="DECIMAL" />
     <result column="order_remarks" property="orderRemarks" jdbcType="VARCHAR" />
+    <result column="order_cutting_wage" property="orderCuttingWage" jdbcType="DECIMAL" />
+    <result column="order_tax_point" property="orderTaxPoint" jdbcType="DECIMAL" />
+    <result column="order_strike" property="orderStrike" jdbcType="DECIMAL" />
+    <result column="payment_input_money" property="paymentInputMoney" jdbcType="DECIMAL" />
+    <result column="show_every_receivables" property="showEveryReceivables" jdbcType="DECIMAL" />
+    <result column="payment_method" property="paymentMethod" jdbcType="VARCHAR" />
+    <result column="payment_remarks" property="paymentRemarks" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -78,10 +87,12 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    order_id, order_date, order_customer_id, order_customer_name, order_customer_phone, 
-    order_customer_address, order_material_name, order_material_color, order_material_specifications, 
-    order_material_meter, order_material_weight, order_material_corona, order_material_folding_mouth, 
-    order_price, order_total_price, order_remarks
+    primary_key_for_order, order_id, order_date, order_delivery_date, order_customer_id, 
+    order_customer_name, order_customer_phone, order_customer_address, order_material_name, 
+    order_material_color, order_material_specifications, order_material_meter, order_material_weight, 
+    order_material_corona, order_material_folding_mouth, order_price, order_total_price, 
+    order_remarks, order_cutting_wage, order_tax_point, order_strike, payment_input_money, 
+    show_every_receivables, payment_method, payment_remarks
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.zju.crm4learning.pojo.TbOrderExample" >
     select
@@ -94,9 +105,19 @@
       <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
-      tbOrder by ${orderByClause}
+      order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_order
+    where primary_key_for_order = #{primaryKeyForOrder,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_order
+    where primary_key_for_order = #{primaryKeyForOrder,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="cn.edu.zju.crm4learning.pojo.TbOrderExample" >
     delete from tb_order
     <if test="_parameter != null" >
@@ -104,31 +125,43 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.edu.zju.crm4learning.pojo.TbOrder" >
-    insert into tb_order (order_id, order_date, order_customer_id, 
-      order_customer_name, order_customer_phone, 
-      order_customer_address, order_material_name, 
-      order_material_color, order_material_specifications, 
-      order_material_meter, order_material_weight, 
-      order_material_corona, order_material_folding_mouth, 
-      order_price, order_total_price, order_remarks
+    insert into tb_order (primary_key_for_order, order_id, order_date, 
+      order_delivery_date, order_customer_id, order_customer_name, 
+      order_customer_phone, order_customer_address, 
+      order_material_name, order_material_color, 
+      order_material_specifications, order_material_meter, 
+      order_material_weight, order_material_corona, 
+      order_material_folding_mouth, order_price, 
+      order_total_price, order_remarks, order_cutting_wage, 
+      order_tax_point, order_strike, payment_input_money, 
+      show_every_receivables, payment_method, payment_remarks
       )
-    values (#{orderId,jdbcType=VARCHAR}, #{orderDate,jdbcType=DATE}, #{orderCustomerId,jdbcType=VARCHAR}, 
-      #{orderCustomerName,jdbcType=VARCHAR}, #{orderCustomerPhone,jdbcType=VARCHAR}, 
-      #{orderCustomerAddress,jdbcType=VARCHAR}, #{orderMaterialName,jdbcType=VARCHAR}, 
-      #{orderMaterialColor,jdbcType=VARCHAR}, #{orderMaterialSpecifications,jdbcType=VARCHAR}, 
-      #{orderMaterialMeter,jdbcType=VARCHAR}, #{orderMaterialWeight,jdbcType=VARCHAR}, 
-      #{orderMaterialCorona,jdbcType=VARCHAR}, #{orderMaterialFoldingMouth,jdbcType=VARCHAR}, 
-      #{orderPrice,jdbcType=VARCHAR}, #{orderTotalPrice,jdbcType=VARCHAR}, #{orderRemarks,jdbcType=VARCHAR}
+    values (#{primaryKeyForOrder,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{orderDate,jdbcType=DATE}, 
+      #{orderDeliveryDate,jdbcType=DATE}, #{orderCustomerId,jdbcType=VARCHAR}, #{orderCustomerName,jdbcType=VARCHAR}, 
+      #{orderCustomerPhone,jdbcType=VARCHAR}, #{orderCustomerAddress,jdbcType=VARCHAR}, 
+      #{orderMaterialName,jdbcType=VARCHAR}, #{orderMaterialColor,jdbcType=VARCHAR}, 
+      #{orderMaterialSpecifications,jdbcType=VARCHAR}, #{orderMaterialMeter,jdbcType=VARCHAR}, 
+      #{orderMaterialWeight,jdbcType=DECIMAL}, #{orderMaterialCorona,jdbcType=VARCHAR}, 
+      #{orderMaterialFoldingMouth,jdbcType=VARCHAR}, #{orderPrice,jdbcType=DECIMAL}, 
+      #{orderTotalPrice,jdbcType=DECIMAL}, #{orderRemarks,jdbcType=VARCHAR}, #{orderCuttingWage,jdbcType=DECIMAL}, 
+      #{orderTaxPoint,jdbcType=DECIMAL}, #{orderStrike,jdbcType=DECIMAL}, #{paymentInputMoney,jdbcType=DECIMAL}, 
+      #{showEveryReceivables,jdbcType=DECIMAL}, #{paymentMethod,jdbcType=VARCHAR}, #{paymentRemarks,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.edu.zju.crm4learning.pojo.TbOrder" >
     insert into tb_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="primaryKeyForOrder != null" >
+        primary_key_for_order,
+      </if>
       <if test="orderId != null" >
         order_id,
       </if>
       <if test="orderDate != null" >
         order_date,
+      </if>
+      <if test="orderDeliveryDate != null" >
+        order_delivery_date,
       </if>
       <if test="orderCustomerId != null" >
         order_customer_id,
@@ -172,13 +205,40 @@
       <if test="orderRemarks != null" >
         order_remarks,
       </if>
+      <if test="orderCuttingWage != null" >
+        order_cutting_wage,
+      </if>
+      <if test="orderTaxPoint != null" >
+        order_tax_point,
+      </if>
+      <if test="orderStrike != null" >
+        order_strike,
+      </if>
+      <if test="paymentInputMoney != null" >
+        payment_input_money,
+      </if>
+      <if test="showEveryReceivables != null" >
+        show_every_receivables,
+      </if>
+      <if test="paymentMethod != null" >
+        payment_method,
+      </if>
+      <if test="paymentRemarks != null" >
+        payment_remarks,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="primaryKeyForOrder != null" >
+        #{primaryKeyForOrder,jdbcType=INTEGER},
+      </if>
       <if test="orderId != null" >
         #{orderId,jdbcType=VARCHAR},
       </if>
       <if test="orderDate != null" >
         #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="orderDeliveryDate != null" >
+        #{orderDeliveryDate,jdbcType=DATE},
       </if>
       <if test="orderCustomerId != null" >
         #{orderCustomerId,jdbcType=VARCHAR},
@@ -205,7 +265,7 @@
         #{orderMaterialMeter,jdbcType=VARCHAR},
       </if>
       <if test="orderMaterialWeight != null" >
-        #{orderMaterialWeight,jdbcType=VARCHAR},
+        #{orderMaterialWeight,jdbcType=DECIMAL},
       </if>
       <if test="orderMaterialCorona != null" >
         #{orderMaterialCorona,jdbcType=VARCHAR},
@@ -214,13 +274,34 @@
         #{orderMaterialFoldingMouth,jdbcType=VARCHAR},
       </if>
       <if test="orderPrice != null" >
-        #{orderPrice,jdbcType=VARCHAR},
+        #{orderPrice,jdbcType=DECIMAL},
       </if>
       <if test="orderTotalPrice != null" >
-        #{orderTotalPrice,jdbcType=VARCHAR},
+        #{orderTotalPrice,jdbcType=DECIMAL},
       </if>
       <if test="orderRemarks != null" >
         #{orderRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCuttingWage != null" >
+        #{orderCuttingWage,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTaxPoint != null" >
+        #{orderTaxPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStrike != null" >
+        #{orderStrike,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentInputMoney != null" >
+        #{paymentInputMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="showEveryReceivables != null" >
+        #{showEveryReceivables,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentMethod != null" >
+        #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentRemarks != null" >
+        #{paymentRemarks,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -230,7 +311,6 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-
 
 
   <select id="selectLastOrderNumber" parameterType="java.lang.String" resultType="java.lang.String">
@@ -246,14 +326,21 @@
 
 
 
+
   <update id="updateByExampleSelective" parameterType="map" >
     update tb_order
     <set >
+      <if test="record.primaryKeyForOrder != null" >
+        primary_key_for_order = #{record.primaryKeyForOrder,jdbcType=INTEGER},
+      </if>
       <if test="record.orderId != null" >
         order_id = #{record.orderId,jdbcType=VARCHAR},
       </if>
       <if test="record.orderDate != null" >
         order_date = #{record.orderDate,jdbcType=DATE},
+      </if>
+      <if test="record.orderDeliveryDate != null" >
+        order_delivery_date = #{record.orderDeliveryDate,jdbcType=DATE},
       </if>
       <if test="record.orderCustomerId != null" >
         order_customer_id = #{record.orderCustomerId,jdbcType=VARCHAR},
@@ -280,7 +367,7 @@
         order_material_meter = #{record.orderMaterialMeter,jdbcType=VARCHAR},
       </if>
       <if test="record.orderMaterialWeight != null" >
-        order_material_weight = #{record.orderMaterialWeight,jdbcType=VARCHAR},
+        order_material_weight = #{record.orderMaterialWeight,jdbcType=DECIMAL},
       </if>
       <if test="record.orderMaterialCorona != null" >
         order_material_corona = #{record.orderMaterialCorona,jdbcType=VARCHAR},
@@ -289,13 +376,34 @@
         order_material_folding_mouth = #{record.orderMaterialFoldingMouth,jdbcType=VARCHAR},
       </if>
       <if test="record.orderPrice != null" >
-        order_price = #{record.orderPrice,jdbcType=VARCHAR},
+        order_price = #{record.orderPrice,jdbcType=DECIMAL},
       </if>
       <if test="record.orderTotalPrice != null" >
-        order_total_price = #{record.orderTotalPrice,jdbcType=VARCHAR},
+        order_total_price = #{record.orderTotalPrice,jdbcType=DECIMAL},
       </if>
       <if test="record.orderRemarks != null" >
         order_remarks = #{record.orderRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderCuttingWage != null" >
+        order_cutting_wage = #{record.orderCuttingWage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderTaxPoint != null" >
+        order_tax_point = #{record.orderTaxPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderStrike != null" >
+        order_strike = #{record.orderStrike,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paymentInputMoney != null" >
+        payment_input_money = #{record.paymentInputMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.showEveryReceivables != null" >
+        show_every_receivables = #{record.showEveryReceivables,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paymentMethod != null" >
+        payment_method = #{record.paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentRemarks != null" >
+        payment_remarks = #{record.paymentRemarks,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -304,8 +412,10 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update tb_order
-    set order_id = #{record.orderId,jdbcType=VARCHAR},
+    set primary_key_for_order = #{record.primaryKeyForOrder,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
       order_date = #{record.orderDate,jdbcType=DATE},
+      order_delivery_date = #{record.orderDeliveryDate,jdbcType=DATE},
       order_customer_id = #{record.orderCustomerId,jdbcType=VARCHAR},
       order_customer_name = #{record.orderCustomerName,jdbcType=VARCHAR},
       order_customer_phone = #{record.orderCustomerPhone,jdbcType=VARCHAR},
@@ -314,14 +424,127 @@
       order_material_color = #{record.orderMaterialColor,jdbcType=VARCHAR},
       order_material_specifications = #{record.orderMaterialSpecifications,jdbcType=VARCHAR},
       order_material_meter = #{record.orderMaterialMeter,jdbcType=VARCHAR},
-      order_material_weight = #{record.orderMaterialWeight,jdbcType=VARCHAR},
+      order_material_weight = #{record.orderMaterialWeight,jdbcType=DECIMAL},
       order_material_corona = #{record.orderMaterialCorona,jdbcType=VARCHAR},
       order_material_folding_mouth = #{record.orderMaterialFoldingMouth,jdbcType=VARCHAR},
-      order_price = #{record.orderPrice,jdbcType=VARCHAR},
-      order_total_price = #{record.orderTotalPrice,jdbcType=VARCHAR},
-      order_remarks = #{record.orderRemarks,jdbcType=VARCHAR}
+      order_price = #{record.orderPrice,jdbcType=DECIMAL},
+      order_total_price = #{record.orderTotalPrice,jdbcType=DECIMAL},
+      order_remarks = #{record.orderRemarks,jdbcType=VARCHAR},
+      order_cutting_wage = #{record.orderCuttingWage,jdbcType=DECIMAL},
+      order_tax_point = #{record.orderTaxPoint,jdbcType=DECIMAL},
+      order_strike = #{record.orderStrike,jdbcType=DECIMAL},
+      payment_input_money = #{record.paymentInputMoney,jdbcType=DECIMAL},
+      show_every_receivables = #{record.showEveryReceivables,jdbcType=DECIMAL},
+      payment_method = #{record.paymentMethod,jdbcType=VARCHAR},
+      payment_remarks = #{record.paymentRemarks,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zju.crm4learning.pojo.TbOrder" >
+    update tb_order
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        order_date = #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="orderDeliveryDate != null" >
+        order_delivery_date = #{orderDeliveryDate,jdbcType=DATE},
+      </if>
+      <if test="orderCustomerId != null" >
+        order_customer_id = #{orderCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCustomerName != null" >
+        order_customer_name = #{orderCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCustomerPhone != null" >
+        order_customer_phone = #{orderCustomerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCustomerAddress != null" >
+        order_customer_address = #{orderCustomerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMaterialName != null" >
+        order_material_name = #{orderMaterialName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMaterialColor != null" >
+        order_material_color = #{orderMaterialColor,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMaterialSpecifications != null" >
+        order_material_specifications = #{orderMaterialSpecifications,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMaterialMeter != null" >
+        order_material_meter = #{orderMaterialMeter,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMaterialWeight != null" >
+        order_material_weight = #{orderMaterialWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="orderMaterialCorona != null" >
+        order_material_corona = #{orderMaterialCorona,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMaterialFoldingMouth != null" >
+        order_material_folding_mouth = #{orderMaterialFoldingMouth,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTotalPrice != null" >
+        order_total_price = #{orderTotalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderRemarks != null" >
+        order_remarks = #{orderRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCuttingWage != null" >
+        order_cutting_wage = #{orderCuttingWage,jdbcType=DECIMAL},
+      </if>
+      <if test="orderTaxPoint != null" >
+        order_tax_point = #{orderTaxPoint,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStrike != null" >
+        order_strike = #{orderStrike,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentInputMoney != null" >
+        payment_input_money = #{paymentInputMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="showEveryReceivables != null" >
+        show_every_receivables = #{showEveryReceivables,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentMethod != null" >
+        payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentRemarks != null" >
+        payment_remarks = #{paymentRemarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where primary_key_for_order = #{primaryKeyForOrder,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zju.crm4learning.pojo.TbOrder" >
+    update tb_order
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      order_date = #{orderDate,jdbcType=DATE},
+      order_delivery_date = #{orderDeliveryDate,jdbcType=DATE},
+      order_customer_id = #{orderCustomerId,jdbcType=VARCHAR},
+      order_customer_name = #{orderCustomerName,jdbcType=VARCHAR},
+      order_customer_phone = #{orderCustomerPhone,jdbcType=VARCHAR},
+      order_customer_address = #{orderCustomerAddress,jdbcType=VARCHAR},
+      order_material_name = #{orderMaterialName,jdbcType=VARCHAR},
+      order_material_color = #{orderMaterialColor,jdbcType=VARCHAR},
+      order_material_specifications = #{orderMaterialSpecifications,jdbcType=VARCHAR},
+      order_material_meter = #{orderMaterialMeter,jdbcType=VARCHAR},
+      order_material_weight = #{orderMaterialWeight,jdbcType=DECIMAL},
+      order_material_corona = #{orderMaterialCorona,jdbcType=VARCHAR},
+      order_material_folding_mouth = #{orderMaterialFoldingMouth,jdbcType=VARCHAR},
+      order_price = #{orderPrice,jdbcType=DECIMAL},
+      order_total_price = #{orderTotalPrice,jdbcType=DECIMAL},
+      order_remarks = #{orderRemarks,jdbcType=VARCHAR},
+      order_cutting_wage = #{orderCuttingWage,jdbcType=DECIMAL},
+      order_tax_point = #{orderTaxPoint,jdbcType=DECIMAL},
+      order_strike = #{orderStrike,jdbcType=DECIMAL},
+      payment_input_money = #{paymentInputMoney,jdbcType=DECIMAL},
+      show_every_receivables = #{showEveryReceivables,jdbcType=DECIMAL},
+      payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      payment_remarks = #{paymentRemarks,jdbcType=VARCHAR}
+    where primary_key_for_order = #{primaryKeyForOrder,jdbcType=INTEGER}
   </update>
 </mapper>

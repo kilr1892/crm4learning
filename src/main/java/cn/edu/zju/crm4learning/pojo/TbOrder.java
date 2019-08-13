@@ -2,13 +2,19 @@ package cn.edu.zju.crm4learning.pojo;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class TbOrder implements Cloneable{
+public class TbOrder implements Cloneable {
+    private Integer primaryKeyForOrder;
+
     private String orderId;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date orderDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date orderDeliveryDate;
 
     private String orderCustomerId;
 
@@ -26,21 +32,43 @@ public class TbOrder implements Cloneable{
 
     private String orderMaterialMeter;
 
-    private String orderMaterialWeight;
+    private BigDecimal orderMaterialWeight;
 
     private String orderMaterialCorona;
 
     private String orderMaterialFoldingMouth;
 
-    private String orderPrice;
+    private BigDecimal orderPrice;
 
-    private String orderTotalPrice;
+    private BigDecimal orderTotalPrice;
 
     private String orderRemarks;
+
+    private BigDecimal orderCuttingWage;
+
+    private BigDecimal orderTaxPoint;
+
+    private BigDecimal orderStrike;
+
+    private BigDecimal paymentInputMoney;
+
+    private BigDecimal showEveryReceivables;
+
+    private String paymentMethod;
+
+    private String paymentRemarks;
 
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    public Integer getPrimaryKeyForOrder() {
+        return primaryKeyForOrder;
+    }
+
+    public void setPrimaryKeyForOrder(Integer primaryKeyForOrder) {
+        this.primaryKeyForOrder = primaryKeyForOrder;
     }
 
     public String getOrderId() {
@@ -57,6 +85,14 @@ public class TbOrder implements Cloneable{
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public Date getOrderDeliveryDate() {
+        return orderDeliveryDate;
+    }
+
+    public void setOrderDeliveryDate(Date orderDeliveryDate) {
+        this.orderDeliveryDate = orderDeliveryDate;
     }
 
     public String getOrderCustomerId() {
@@ -123,12 +159,12 @@ public class TbOrder implements Cloneable{
         this.orderMaterialMeter = orderMaterialMeter == null ? null : orderMaterialMeter.trim();
     }
 
-    public String getOrderMaterialWeight() {
+    public BigDecimal getOrderMaterialWeight() {
         return orderMaterialWeight;
     }
 
-    public void setOrderMaterialWeight(String orderMaterialWeight) {
-        this.orderMaterialWeight = orderMaterialWeight == null ? null : orderMaterialWeight.trim();
+    public void setOrderMaterialWeight(BigDecimal orderMaterialWeight) {
+        this.orderMaterialWeight = orderMaterialWeight;
     }
 
     public String getOrderMaterialCorona() {
@@ -147,20 +183,20 @@ public class TbOrder implements Cloneable{
         this.orderMaterialFoldingMouth = orderMaterialFoldingMouth == null ? null : orderMaterialFoldingMouth.trim();
     }
 
-    public String getOrderPrice() {
+    public BigDecimal getOrderPrice() {
         return orderPrice;
     }
 
-    public void setOrderPrice(String orderPrice) {
-        this.orderPrice = orderPrice == null ? null : orderPrice.trim();
+    public void setOrderPrice(BigDecimal orderPrice) {
+        this.orderPrice = orderPrice;
     }
 
-    public String getOrderTotalPrice() {
+    public BigDecimal getOrderTotalPrice() {
         return orderTotalPrice;
     }
 
-    public void setOrderTotalPrice(String orderTotalPrice) {
-        this.orderTotalPrice = orderTotalPrice == null ? null : orderTotalPrice.trim();
+    public void setOrderTotalPrice(BigDecimal orderTotalPrice) {
+        this.orderTotalPrice = orderTotalPrice;
     }
 
     public String getOrderRemarks() {
@@ -169,5 +205,61 @@ public class TbOrder implements Cloneable{
 
     public void setOrderRemarks(String orderRemarks) {
         this.orderRemarks = orderRemarks == null ? null : orderRemarks.trim();
+    }
+
+    public BigDecimal getOrderCuttingWage() {
+        return orderCuttingWage;
+    }
+
+    public void setOrderCuttingWage(BigDecimal orderCuttingWage) {
+        this.orderCuttingWage = orderCuttingWage;
+    }
+
+    public BigDecimal getOrderTaxPoint() {
+        return orderTaxPoint;
+    }
+
+    public void setOrderTaxPoint(BigDecimal orderTaxPoint) {
+        this.orderTaxPoint = orderTaxPoint;
+    }
+
+    public BigDecimal getOrderStrike() {
+        return orderStrike;
+    }
+
+    public void setOrderStrike(BigDecimal orderStrike) {
+        this.orderStrike = orderStrike;
+    }
+
+    public BigDecimal getPaymentInputMoney() {
+        return paymentInputMoney;
+    }
+
+    public void setPaymentInputMoney(BigDecimal paymentInputMoney) {
+        this.paymentInputMoney = paymentInputMoney;
+    }
+
+    public BigDecimal getShowEveryReceivables() {
+        return showEveryReceivables;
+    }
+
+    public void setShowEveryReceivables(BigDecimal showEveryReceivables) {
+        this.showEveryReceivables = showEveryReceivables;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod == null ? null : paymentMethod.trim();
+    }
+
+    public String getPaymentRemarks() {
+        return paymentRemarks;
+    }
+
+    public void setPaymentRemarks(String paymentRemarks) {
+        this.paymentRemarks = paymentRemarks == null ? null : paymentRemarks.trim();
     }
 }

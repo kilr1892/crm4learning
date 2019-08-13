@@ -11,15 +11,23 @@ public interface TbOrderMapper {
 
     int deleteByExample(TbOrderExample example);
 
+    int deleteByPrimaryKey(Integer primaryKeyForOrder);
+
     int insert(TbOrder record);
 
     int insertSelective(TbOrder record);
 
     List<TbOrder> selectByExample(TbOrderExample example);
 
+    TbOrder selectByPrimaryKey(Integer primaryKeyForOrder);
+
     int updateByExampleSelective(@Param("record") TbOrder record, @Param("example") TbOrderExample example);
 
     int updateByExample(@Param("record") TbOrder record, @Param("example") TbOrderExample example);
+
+    int updateByPrimaryKeySelective(TbOrder record);
+
+    int updateByPrimaryKey(TbOrder record);
 
     String selectLastOrderNumber(@Param("orderDay") String orderDay);
 }

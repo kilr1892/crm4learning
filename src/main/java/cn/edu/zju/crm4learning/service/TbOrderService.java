@@ -1,6 +1,5 @@
 package cn.edu.zju.crm4learning.service;
 
-import cn.edu.zju.crm4learning.pojo.TbCustomer;
 import cn.edu.zju.crm4learning.pojo.TbOrder;
 import cn.edu.zju.crm4learning.pojo.TbOrderId;
 
@@ -16,9 +15,13 @@ import java.util.List;
  */
 public interface TbOrderService {
 
-    List<TbCustomer> getCustomers();
+//    List<TbCustomer> getCustomers();
 
     TbOrderId getOrderId();
 
     void addOrder(TbOrder tbOrder);
+
+    List<TbOrder> getTodayOrders();
+
+    List<TbOrder> getAllOrders();
 }
