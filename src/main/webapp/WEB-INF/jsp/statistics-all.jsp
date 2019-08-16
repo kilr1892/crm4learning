@@ -116,11 +116,13 @@
                     $(this).html(obj_text.val());
                     // 计算并提交数据库代码
 
-                    updateReceivables();
-
 
                 }
             });
+            // console.log(str);
+            if (str == "编辑") {
+                    updateReceivables();
+            }
         });
     });
 </script>

@@ -1,9 +1,8 @@
 package cn.edu.zju.crm4learning.service.impl;
 
+import cn.edu.zju.crm4learning.mapper.TbCustomerMapper;
 import cn.edu.zju.crm4learning.mapper.TbOrderMapper;
-import cn.edu.zju.crm4learning.pojo.TbOrder;
-import cn.edu.zju.crm4learning.pojo.TbOrderExample;
-import cn.edu.zju.crm4learning.pojo.TbOrderId;
+import cn.edu.zju.crm4learning.pojo.*;
 import cn.edu.zju.crm4learning.service.TbOrderService;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
@@ -11,6 +10,7 @@ import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -27,28 +27,8 @@ public class TbOrderServiceImpl implements TbOrderService {
     @Autowired
     private TbOrderMapper tbOrderMapper;
 
-//    /**
-//     * 感觉自己像个智障, json又转成list
-//     * 明明直接可以做的, 非要换到customer类里
-//     * 然后在用httpclient取...
-//     */
-//    @Override
-//    public List<TbCustomer> getCustomers() {
-//        String url = "http://localhost:8080/customer/getCustomers";
-//        HttpGet request = new HttpGet(url);
-//        HttpClient httpClient = new DefaultHttpClient();
-//        try {
-//            HttpResponse response = httpClient.execute(request);
-//            String strCustomers = EntityUtils.toString(response.getEntity(), "UTF-8");
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            List<TbCustomer> customers = (List<TbCustomer>) objectMapper.readValue(strCustomers, List.class);
-//            return customers;
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    @Autowired
+    private TbCustomerMapper tbCustomerMapper;
 
     @Override
     public TbOrderId getOrderId() {
@@ -97,5 +77,15 @@ public class TbOrderServiceImpl implements TbOrderService {
     @Override
     public void updateReceivables(TbOrder order) {
         tbOrderMapper.updateByPrimaryKeySelective(order);
+
+        BigDecimal showEveryReceivables = order.getShowEveryReceivables();
+        TbCustomer tbCustomer = new TbCustomer();
+        tbCustomer.setCustomerReceivables(showEveryReceivables);
+
+        TbCustomerExample tbCustomerExample = new TbCustomerExample();
+        TbCustomerExample.Criteria criteria = tbCustomerExample.createCriteria();
+        criteria.andCustomerNameEqualTo(order.getOrderCustomerName());
+        tbCustomerMapper.updateByExampleSelective(tbCustomer, tbCustomerExample);
+
     }
 }
