@@ -93,4 +93,9 @@ public class TbOrderServiceImpl implements TbOrderService {
         List<TbOrder> tbOrders = tbOrderMapper.selectByExample(tbOrderExample);
         return tbOrders;
     }
+
+    @Override
+    public void updateReceivables(TbOrder order) {
+        tbOrderMapper.updateByPrimaryKeySelective(order);
+    }
 }

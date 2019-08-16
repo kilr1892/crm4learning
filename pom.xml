@@ -183,6 +183,14 @@
       <artifactId>jackson-annotations</artifactId>
       <version>${jackson.version}</version>
     </dependency>
+    <!--据说是解析json数据用的-->
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-asl</artifactId>
+      <version>1.9.8</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
 
     <!-- httpclient -->
     <dependency>

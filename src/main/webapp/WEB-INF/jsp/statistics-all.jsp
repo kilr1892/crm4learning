@@ -29,7 +29,7 @@
         姓名
         <input type="text"/>
     </label>
-    <input type="submit"/>
+    <input type="submit" value="搜索"/>
 </form>
 <br/>
 
@@ -53,10 +53,11 @@
             <th>备注</th>
             <th>操作</th>
         </tr>
-        <c:forEach items="${searchOrders}" var="order">
+        <c:forEach items="${searchOrders}" var="order" varStatus="status">
+
             <tr>
                     <%--    主键--%>
-                <input type="hidden" value="${order.primaryKeyForOrder}"/>
+                <input type="hidden" id="primaryKeyForOrder${status.count}" value="${order.primaryKeyForOrder}"/>
                     <%--    日期--%>
                 <td><fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd"/></td>
                     <%--    客户名称--%>
@@ -90,12 +91,37 @@
                     <%--    备注--%>
                 <td>${order.paymentRemarks}</td>
                 <td>
-                    <button class="btnSelect" onclick="updateReceivables()">select</button>
+<%--                    <button onclick="updateReceivables()">编辑</button>--%>
+                    <input type="button" value="编辑"/>
                 </td>
             </tr>
         </c:forEach>
     </table>
-    <input type="submit" value="提交修改"/>
 <%@ include file="common/footer.jsp" %>
 </body>
+
+<script>
+    $(function(){
+        $("input:button").off().click(function() {
+            str = $(this).val()=="编辑"?"确定":"编辑";
+
+            $(this).val(str);   // 按钮被点击后，在“编辑”和“确定”之间切换
+            $(this).parent().siblings("td").each(function() {  // 获取当前行的其他单元格
+
+                obj_text = $(this).find("input:text");    // 判断单元格下是否有文本框
+                if(!obj_text.length)   // 如果没有文本框，则添加文本框使之可以编辑
+                    $(this).html("<input type='text' value='"+$(this).text()+"'>");
+                else   // 如果已经存在文本框，则将其显示为文本框修改的值
+                {
+                    $(this).html(obj_text.val());
+                    // 计算并提交数据库代码
+
+                    updateReceivables();
+
+
+                }
+            });
+        });
+    });
+</script>
 </html>

@@ -2,5 +2,5 @@
 <br/>
 <br/>
 <div style="float: right;width: 200px;">
-<h3><a href="http://localhost:8080/" style="float: left">返回</a></h3>
+<h3><a href="/" style="float: left">返回</a></h3>
 </div>

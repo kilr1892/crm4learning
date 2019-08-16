@@ -24,4 +24,6 @@ public interface TbOrderService {
     List<TbOrder> getTodayOrders();
 
     List<TbOrder> getAllOrders();
+
+    void updateReceivables(TbOrder order);
 }
