@@ -124,7 +124,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.edu.zju.crm4learning.pojo.TbOrder" >
+  <insert id="insert" parameterType="cn.edu.zju.crm4learning.pojo.TbOrder">
     insert into tb_order (primary_key_for_order, order_id, order_date, 
       order_delivery_date, order_customer_id, order_customer_name, 
       order_customer_phone, order_customer_address, 
@@ -148,7 +148,7 @@
       #{showEveryReceivables,jdbcType=DECIMAL}, #{paymentMethod,jdbcType=VARCHAR}, #{paymentRemarks,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.zju.crm4learning.pojo.TbOrder" >
+  <insert id="insertSelective" parameterType="cn.edu.zju.crm4learning.pojo.TbOrder">
     insert into tb_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="primaryKeyForOrder != null" >

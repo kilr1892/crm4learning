@@ -3,6 +3,7 @@ package cn.edu.zju.crm4learning.service.impl;
 import cn.edu.zju.crm4learning.mapper.TbCustomerMapper;
 import cn.edu.zju.crm4learning.pojo.TbCustomer;
 import cn.edu.zju.crm4learning.pojo.TbCustomerExample;
+import cn.edu.zju.crm4learning.pojo.TbOrder;
 import cn.edu.zju.crm4learning.service.TbCustomerService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -75,6 +76,19 @@ public class TbCustomerServiceImpl implements TbCustomerService {
         TbCustomer record = new TbCustomer();
         record.setCustomerReceivables(showEveryReceivables);
         tbCustomerMapper.updateByExampleSelective(record, tbCustomerExample);
+    }
+
+    @Override
+    public void updateCustomersReceivablesFromAjax(TbOrder order) {
+
+        BigDecimal showEveryReceivables = order.getShowEveryReceivables();
+        TbCustomer tbCustomer = new TbCustomer();
+        tbCustomer.setCustomerReceivables(showEveryReceivables);
+
+        TbCustomerExample tbCustomerExample = new TbCustomerExample();
+        TbCustomerExample.Criteria criteria = tbCustomerExample.createCriteria();
+        criteria.andCustomerNameEqualTo(order.getOrderCustomerName());
+        tbCustomerMapper.updateByExampleSelective(tbCustomer, tbCustomerExample);
     }
 
 }

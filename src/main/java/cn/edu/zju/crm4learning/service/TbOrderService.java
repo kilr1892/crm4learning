@@ -26,4 +26,8 @@ public interface TbOrderService {
     List<TbOrder> getAllOrders();
 
     void updateReceivables(TbOrder order);
+
+    List<TbOrder> getSearchOrders(String customerName);
+
+    void addMoneyLine(TbOrder order);
 }

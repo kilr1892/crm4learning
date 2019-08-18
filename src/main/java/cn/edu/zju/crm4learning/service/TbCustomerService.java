@@ -1,6 +1,7 @@
 package cn.edu.zju.crm4learning.service;
 
 import cn.edu.zju.crm4learning.pojo.TbCustomer;
+import cn.edu.zju.crm4learning.pojo.TbOrder;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,4 +23,6 @@ public interface TbCustomerService {
     BigDecimal selectCustomerReceivables(String customerName);
 
     void updateCustomerReceivables(String orderCustomerName, BigDecimal showEveryReceivables);
+
+    void updateCustomersReceivablesFromAjax(TbOrder order);
 }

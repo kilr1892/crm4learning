@@ -1,8 +1,9 @@
 package cn.edu.zju.crm4learning.service.impl;
 
-import cn.edu.zju.crm4learning.mapper.TbCustomerMapper;
 import cn.edu.zju.crm4learning.mapper.TbOrderMapper;
-import cn.edu.zju.crm4learning.pojo.*;
+import cn.edu.zju.crm4learning.pojo.TbOrder;
+import cn.edu.zju.crm4learning.pojo.TbOrderExample;
+import cn.edu.zju.crm4learning.pojo.TbOrderId;
 import cn.edu.zju.crm4learning.service.TbOrderService;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
@@ -10,7 +11,6 @@ import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -26,9 +26,6 @@ import java.util.List;
 public class TbOrderServiceImpl implements TbOrderService {
     @Autowired
     private TbOrderMapper tbOrderMapper;
-
-    @Autowired
-    private TbCustomerMapper tbCustomerMapper;
 
     @Override
     public TbOrderId getOrderId() {
@@ -78,14 +75,20 @@ public class TbOrderServiceImpl implements TbOrderService {
     public void updateReceivables(TbOrder order) {
         tbOrderMapper.updateByPrimaryKeySelective(order);
 
-        BigDecimal showEveryReceivables = order.getShowEveryReceivables();
-        TbCustomer tbCustomer = new TbCustomer();
-        tbCustomer.setCustomerReceivables(showEveryReceivables);
 
-        TbCustomerExample tbCustomerExample = new TbCustomerExample();
-        TbCustomerExample.Criteria criteria = tbCustomerExample.createCriteria();
-        criteria.andCustomerNameEqualTo(order.getOrderCustomerName());
-        tbCustomerMapper.updateByExampleSelective(tbCustomer, tbCustomerExample);
+    }
 
+    @Override
+    public List<TbOrder> getSearchOrders(String customerName) {
+        TbOrderExample tbOrderExample = new TbOrderExample();
+        TbOrderExample.Criteria criteria = tbOrderExample.createCriteria();
+        criteria.andOrderCustomerNameEqualTo(customerName);
+        List<TbOrder> tbOrders = tbOrderMapper.selectByExample(tbOrderExample);
+        return tbOrders;
+    }
+
+    @Override
+    public void addMoneyLine(TbOrder order) {
+        tbOrderMapper.insertSelective(order);
     }
 }
