@@ -175,7 +175,9 @@ function updateReceivables() {
     // });
 }
 
-
+/**
+ * 防止多次提交
+ */
 function prevent_reloading() {
     var pendingRequests = {};
     jQuery.ajaxPrefilter(function (options, originalOptions, jqXHR) {
