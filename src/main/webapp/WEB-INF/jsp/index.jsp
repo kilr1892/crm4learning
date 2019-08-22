@@ -9,5 +9,6 @@
 <h2><a href="/order">订单</a></h2>
 <h2><a href="/statistics/today">每日统计</a></h2>
 <h2><a href="/statistics/all">所有记录</a></h2>
+<h2><a href="/excel">导入数据库</a></h2>
 </body>
 </html>
